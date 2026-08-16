@@ -1,6 +1,6 @@
 # Boletín de Compras Municipales · Chascomus 2019
 
-**Proyecto de portfolio: auditoría de calidad de datos, análisis de compras públicas y análisis de redes sociales (ARS), sobre el registro real de órdenes de compra 2019 de un municipio bonaerense.**
+**Auditoría de calidad de datos, análisis de compras públicas y análisis de redes sociales (ARS), sobre el registro real de órdenes de compra 2019 de un municipio bonaerense.**
 
 > 🔒 **Nota de privacidad:** este repositorio es un ejercicio de portfolio a partir de trabajo real. Los nombres de proveedores y de secretarías fueron reemplazados por códigos (`PROV-XXX` / `Secretaría A`–`J`), y el municipio no se identifica por nombre. Las proporciones, montos, fechas y estructura de la red son reales — solo se anonimizaron las identidades.
 
