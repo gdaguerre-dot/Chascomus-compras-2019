@@ -4,7 +4,7 @@
 
 > 🔒 **Nota de privacidad:** este repositorio es un ejercicio de portfolio a partir de trabajo real. Los nombres de proveedores y de secretarías fueron reemplazados por códigos (`PROV-XXX` / `Secretaría A`–`J`), y el municipio no se identifica por nombre. Las proporciones, montos, fechas y estructura de la red son reales — solo se anonimizaron las identidades.
 
-🔗 **[Ver el dashboard interactivo](https://TU-USUARIO.github.io/TU-REPO/)** *(reemplazar con el link de GitHub Pages una vez publicado)*
+🔗 **[Ver el dashboard interactivo](https://gdaguerre-dot.github.io/chascomus-compras-2019/)**
 
 ![Red de compras municipales 2019, anonimizada](assets/red_compras_2019.png)
 
@@ -99,25 +99,17 @@ cd docs && python -m http.server 8000
 
 Sin el archivo fuente, los pasos 3 y 4 igual funcionan a partir de `data/compras_2019_anonimizado.csv`, que sí está en el repo.
 
-## Publicar en GitHub Pages
+## Cómo subir esto a GitHub (sin usar la terminal)
 
-1. Subir el repositorio a GitHub (ver pasos abajo).
-2. En **Settings → Pages**, elegir la rama `main` y la carpeta `/docs` como fuente.
-3. GitHub publica el sitio en `https://TU-USUARIO.github.io/TU-REPO/` en 1–2 minutos.
+Ya creaste el repo en https://github.com/gdaguerre-dot/chascomus-compras-2019 — para subir el contenido:
 
-## Pasos para subir el repo a GitHub
+1. Entrá al repo y hacé clic en **Add file → Upload files**.
+2. Abrí la carpeta descomprimida en tu computadora y **arrastrá las 4 carpetas** (`assets`, `data`, `docs`, `scripts`) más `README.md`, `linkedin_post.md` y `.gitignore` directamente a la ventana del navegador. Los navegadores modernos (Chrome, Edge, Firefox) preservan la estructura de carpetas al arrastrar.
+   - Si el navegador no reconoce las carpetas al arrastrarlas, subilas una por una entrando a "Upload files" dentro de cada carpeta destino (por ejemplo, creá primero `docs/index.html`, GitHub te crea la carpeta `docs` sola).
+3. Abajo de todo, en "Commit changes", dejá el mensaje por defecto o escribí algo como *"Subida inicial del dashboard anonimizado"* y hacé clic en **Commit changes**.
+4. Una vez subido todo, andá a **Settings → Pages**, en "Branch" elegí `main` y en la carpeta elegí **`/docs`**, guardá. GitHub publica el sitio en `https://gdaguerre-dot.github.io/chascomus-compras-2019/` en 1–2 minutos.
 
-```bash
-cd municipio-compras-2019-anonimizado
-git init
-git add .
-git commit -m "Boletín de compras municipales 2019 (anonimizado): dashboard, red y auditoría de datos"
-git branch -M main
-git remote add origin https://github.com/TU-USUARIO/TU-REPO.git
-git push -u origin main
-```
-
-Luego activar GitHub Pages como se indica arriba.
+No hace falta que instales git ni uses la terminal para nada de esto — todo se hace desde la web de GitHub.
 
 ## Limitaciones y lo que queda abierto
 
