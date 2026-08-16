@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín de Compras Municipales · Municipio bonaerense 2019 (anonimizado)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+  :root{
+    --paper: #ECE9DE;
+    --paper-deep: #E2DECE;
+    --ink: #1B2A44;
+    --ink-soft: #3B4A64;
+    --rule: #B7AF98;
+    --brick: #8A3226;
+    --brick-soft: #A8493A;
+    --brass: #93752F;
+    --brass-light: #C9A75C;
+    --green-ok: #3D5A3D;
+    --text: #262319;
+    --text-mute: #625D4C;
+    --white: #F7F5EC;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      repeating-linear-gradient(180deg, rgba(0,0,0,0.012) 0px, rgba(0,0,0,0.012) 1px, transparent 1px, transparent 3px);
+    color:var(--text);
+    font-family:'Source Serif 4', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 28px 80px; }
+
+  /* ===== MASTHEAD ===== */
+  .masthead{ border-bottom:3px solid var(--ink); padding:34px 0 16px; margin-bottom:6px; }
+  .masthead-top{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--text-mute); margin-bottom:18px;
+  }
+  .masthead-top span.stamp{ border:1px solid var(--brick); color:var(--brick); padding:2px 8px; border-radius:2px; font-weight:600; }
+  h1.title{
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(34px,5vw,58px);
+    line-height:1.02; margin:0 0 10px; letter-spacing:-0.01em; color:var(--ink);
+  }
+  .subtitle{
+    font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--text-mute);
+    letter-spacing:0.03em; display:flex; gap:18px; flex-wrap:wrap;
+  }
+  .subtitle b{ color:var(--ink); font-weight:600; }
+
+  /* ===== FILTER BAR ===== */
+  .filterbar{
+    position:sticky; top:0; z-index:20; background:var(--paper);
+    border-bottom:1px solid var(--rule); padding:14px 0; margin-bottom:0;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    backdrop-filter:blur(2px);
+  }
+  .filterbar .flabel{
+    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:0.09em; color:var(--text-mute);
+  }
+  .chip{
+    font-family:'JetBrains Mono',monospace; font-size:12px; padding:6px 13px;
+    border:1px solid var(--rule); border-radius:2px; cursor:pointer; background:var(--white);
+    color:var(--text); transition:all .12s; user-select:none;
+  }
+  .chip:hover{ border-color:var(--ink); }
+  .chip.active{ background:var(--ink); color:var(--white); border-color:var(--ink); }
+  .filter-select-wrap{ margin-left:auto; display:flex; align-items:center; gap:8px; }
+  select#jurSelect{
+    font-family:'JetBrains Mono',monospace; font-size:12px; padding:6px 10px;
+    border:1px solid var(--rule); background:var(--white); color:var(--ink); border-radius:2px;
+  }
+
+  /* ===== HERO ===== */
+  .hero{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:40px; padding:44px 0 40px; border-bottom:1px solid var(--rule); align-items:center; }
+  @media (max-width:860px){ .hero{ grid-template-columns:1fr; } }
+  .hero-eyebrow{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--brick); margin-bottom:14px; font-weight:700; }
+  .hero-text h2{ font-family:'Fraunces', serif; font-weight:500; font-size:24px; color:var(--ink); margin:0 0 14px; line-height:1.25; }
+  .hero-text p{ font-size:16px; line-height:1.65; color:var(--text); margin:0 0 12px; }
+  .hero-text p.small{ font-size:13.5px; color:var(--text-mute); font-family:'JetBrains Mono',monospace; line-height:1.6;}
+  .stamp-panel{ background:var(--white); border:1px solid var(--rule); padding:32px 30px; position:relative; box-shadow: 4px 4px 0 rgba(27,42,68,0.06); }
+  .stamp-row{ margin-bottom:22px; }
+  .stamp-label{ font-family:'JetBrains Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-mute); margin-bottom:6px; }
+  .stamp-value-wrong{ font-family:'JetBrains Mono', monospace; font-weight:600; font-size:26px; color:#8b8375; position:relative; display:inline-block; }
+  .stamp-value-wrong::after{ content:""; position:absolute; left:-4px; right:-4px; top:52%; height:2px; background:var(--brick); transform:rotate(-3deg); }
+  .stamp-arrow{ font-family:'JetBrains Mono',monospace; color:var(--brick); font-size:13px; margin:8px 0; letter-spacing:0.05em;}
+  .stamp-value-right{ font-family:'JetBrains Mono', monospace; font-weight:700; font-size:38px; color:var(--ink); }
+  .stamp-note{ margin-top:18px; padding-top:16px; border-top:1px dashed var(--rule); font-size:12.5px; color:var(--text-mute); line-height:1.55; }
+  .badge-alert{ display:inline-block; margin-top:14px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.05em; background:rgba(138,50,38,0.08); color:var(--brick); border:1px solid rgba(138,50,38,0.35); padding:4px 9px; border-radius:2px; }
+
+  /* ===== KPI STRIP ===== */
+  .kpis{ display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--rule); margin:0; border:1px solid var(--rule); }
+  @media (max-width:860px){ .kpis{ grid-template-columns:repeat(2,1fr);} }
+  .kpi{ background:var(--paper); padding:20px 18px; }
+  .kpi .n{ font-family:'JetBrains Mono',monospace; font-weight:700; font-size:26px; color:var(--ink); transition:opacity .15s; }
+  .kpi .l{ font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-mute); margin-top:4px; }
+  .kpi.warn .n{ color:var(--brick); }
+  .kpi.dyn .n{ color:var(--brass); }
+
+  /* ===== SECTIONS ===== */
+  section{ padding:56px 0 8px; }
+  .section-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:28px; border-bottom:1px solid var(--ink); padding-bottom:10px; }
+  .section-num{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--brass); font-weight:700; }
+  h3.section-title{ font-family:'Fraunces',serif; font-weight:600; font-size:26px; color:var(--ink); margin:0; }
+  .section-desc{ font-size:14.5px; color:var(--text-mute); margin:-16px 0 26px; max-width:640px; line-height:1.6; }
+
+  .chart-monthly{ display:flex; align-items:flex-end; gap:10px; height:220px; padding:0 4px 0; border-bottom:1px solid var(--ink); }
+  .bar-col{ flex:1; display:flex; flex-direction:column; align-items:center; height:100%; justify-content:flex-end; position:relative; }
+  .bar{ width:100%; max-width:46px; background:linear-gradient(180deg, var(--brass-light), var(--brass)); position:relative; cursor:default; transition:height .3s, opacity .15s; }
+  .bar:hover{ opacity:0.75; }
+  .bar-col .mlabel{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--text-mute); margin-top:8px; }
+  .bar-col .mval{ font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--ink-soft); position:absolute; top:-18px; left:0; right:0; text-align:center; opacity:0; transition:opacity .15s; white-space:nowrap;}
+  .bar-col:hover .mval{ opacity:1; }
+
+  .jur-list{ display:flex; flex-direction:column; gap:0; }
+  .jur-row{ display:grid; grid-template-columns: 210px 1fr 130px 90px; align-items:center; gap:16px; padding:13px 0; border-bottom:1px solid var(--rule); cursor:pointer; transition:opacity .15s; }
+  .jur-row:hover{ background:rgba(147,117,47,0.05); }
+  .jur-row.dim{ opacity:0.28; }
+  .jur-row.sel .jur-name{ color:var(--brick); }
+  @media (max-width:760px){ .jur-row{ grid-template-columns: 130px 1fr 80px; } .jur-row .jur-hhi{display:none;} }
+  .jur-name{ font-size:14.5px; font-weight:600; color:var(--ink); }
+  .jur-bar-track{ background:var(--paper-deep); height:16px; position:relative; }
+  .jur-bar-fill{ height:100%; background:var(--ink); position:relative; transition:width .3s; }
+  .jur-amount{ font-family:'JetBrains Mono',monospace; font-size:12.5px; text-align:right; color:var(--text); }
+  .jur-hhi{ font-family:'JetBrains Mono',monospace; font-size:10.5px; text-align:right; }
+  .hhi-tag{ padding:2px 7px; border-radius:2px; border:1px solid; }
+  .hhi-low{ color:var(--green-ok); border-color:var(--green-ok); background:rgba(61,90,61,0.06);}
+  .hhi-mid{ color:var(--brass); border-color:var(--brass); background:rgba(147,117,47,0.08);}
+  .hhi-high{ color:var(--brick); border-color:var(--brick); background:rgba(138,50,38,0.08);}
+  .hhi-legend{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-mute); display:flex; gap:22px; margin-top:20px; flex-wrap:wrap; }
+  .hhi-legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .dot{ width:8px; height:8px; border-radius:50%; display:inline-block; }
+
+  table.prov{ width:100%; border-collapse:collapse; }
+  table.prov th{ text-align:left; font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-mute); font-weight:600; padding:0 10px 10px; border-bottom:1px solid var(--ink); }
+  table.prov td{ padding:12px 10px; border-bottom:1px solid var(--rule); font-size:14px; }
+  table.prov tr:hover td{ background:rgba(147,117,47,0.05); }
+  td.rank{ font-family:'JetBrains Mono',monospace; color:var(--brass); font-weight:700; width:30px; }
+  td.pname{ font-weight:600; color:var(--ink); }
+  td.pnum{ font-family:'JetBrains Mono',monospace; text-align:right; color:var(--text); }
+  td.pbar{ width:130px; }
+  .mini-bar-track{ background:var(--paper-deep); height:8px; }
+  .mini-bar-fill{ background:var(--brass); height:100%; transition:width .3s; }
+
+  .network-fig{ margin:0; }
+  .network-fig img{ width:100%; border:1px solid var(--rule); display:block; }
+  .network-fig figcaption{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--text-mute); margin-top:10px; line-height:1.6; }
+
+  .method{ background:var(--white); border:1px solid var(--rule); padding:26px 28px; font-size:14px; line-height:1.7; color:var(--text); }
+  .method h4{ font-family:'Fraunces',serif; font-size:16px; color:var(--ink); margin:0 0 10px; font-weight:600; }
+  .method ul{ margin:8px 0 0; padding-left:20px; }
+  .method li{ margin-bottom:7px; }
+  .method .flag{ color:var(--brick); font-weight:600; }
+
+  .empty-note{ font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--text-mute); padding:20px 0; }
+
+  footer{ margin-top:60px; padding-top:20px; border-top:3px solid var(--ink); font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-mute); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="masthead-top">
+      <span>Municipio bonaerense (anonimizado) · Dirección de Modernización</span>
+      <span class="stamp">Ejercicio 2019</span>
+    </div>
+    <h1 class="title">Boletín de Compras Municipales</h1>
+    <div class="subtitle">
+      <span><b>Período</b> 04 ene — 27 dic 2019</span>
+      <span><b>616</b> proveedores</span>
+      <span><b>55</b> dependencias</span>
+      <span><b>10</b> secretarías</span>
+    </div>
+    <p style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--text-mute); margin:10px 0 0; max-width:700px; line-height:1.6;">
+      Proyecto de portfolio. Los nombres de proveedores y secretarías fueron reemplazados por códigos (PROV-XXX / Secretaría A–J); el municipio no se identifica por nombre. La estructura, montos y proporciones son reales.
+    </p>
+  </div>
+
+  <div class="filterbar">
+    <span class="flabel">Filtrar por secretaría</span>
+    <select id="jurSelect"></select>
+    <div class="filter-select-wrap">
+      <span class="chip active" id="resetChip">✕ ver todas</span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Primer hallazgo del análisis</div>
+      <h2>El monto total del gasto no es lo que dice la planilla a simple vista.</h2>
+      <p>La base cruda repite el importe de una orden en cada línea de descripción que la compone. Sumar la columna tal cual infla el gasto real en más del doble.</p>
+      <p class="small">Metodología: se reconstruyó el número de orden con relleno hacia adelante (las líneas de detalle heredan el folio de su orden) y se dedupli­có por (orden, proveedor, importe) para aislar el monto real de cada compra. Estas cifras son globales — no cambian con el filtro de arriba.</p>
+    </div>
+    <div class="stamp-panel">
+      <div class="stamp-row">
+        <div class="stamp-label">Suma cruda de la columna IMPORTE</div>
+        <div class="stamp-value-wrong" id="rawSum">—</div>
+      </div>
+      <div class="stamp-arrow">↓ corregido tras deduplicar por orden real</div>
+      <div class="stamp-row">
+        <div class="stamp-label">Gasto real estimado 2019</div>
+        <div class="stamp-value-right" id="realSum">—</div>
+      </div>
+      <div class="badge-alert" id="ocAlert">⚠ —</div>
+      <div class="stamp-note" id="stampNote">13.715 órdenes reales reconstruidas a partir de 28.525 líneas de detalle. El campo de folio deja de completarse de forma sostenida desde fines de abril — una falla de trazabilidad, no un dato faltante aleatorio.</div>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi dyn"><div class="n" id="kpiGasto">—</div><div class="l" id="kpiGastoL">Gasto real 2019</div></div>
+    <div class="kpi dyn"><div class="n" id="kpiOrdenes">—</div><div class="l">Órdenes reales</div></div>
+    <div class="kpi dyn"><div class="n" id="kpiProv">—</div><div class="l">Proveedores</div></div>
+    <div class="kpi dyn"><div class="n" id="kpiTop10">—</div><div class="l" id="kpiTop10L">Concentran los 10 mayores</div></div>
+    <div class="kpi warn"><div class="n">70,6%</div><div class="l">Líneas sin folio de OC (global)</div></div>
+  </div>
+
+  <section id="mensual">
+    <div class="section-head"><span class="section-num">01</span><h3 class="section-title">Gasto mensual</h3></div>
+    <p class="section-desc" id="mensualDesc">Fuerte concentración en el primer tercio del año (enero–abril concentra cerca del 60% del gasto anual reconstruido), seguido de una meseta baja y estable de mayo a diciembre.</p>
+    <div class="chart-monthly" id="chartMonthly"></div>
+  </section>
+
+  <section id="secretarias">
+    <div class="section-head"><span class="section-num">02</span><h3 class="section-title">Gasto por secretaría</h3></div>
+    <p class="section-desc">Las tres secretarías de mayor volumen concentran cerca del 82% del gasto real — un patrón de concentración que coincide con lo que identificó el informe original de análisis de redes sociales (ARS) sobre el mismo período, donde esas mismas tres secretarías aparecían como las comunidades centrales de la red de compras. Hacé clic en una fila para filtrar todo el tablero por esa secretaría. El HHI mide qué tan concentrado está el gasto en pocos proveedores (0–10.000; &lt;1.500 baja, 1.500–2.500 moderada, &gt;2.500 alta).</p>
+    <div class="jur-list" id="jurList"></div>
+    <div class="hhi-legend">
+      <span><span class="dot" style="background:var(--green-ok)"></span> HHI &lt; 1.500 — baja concentración</span>
+      <span><span class="dot" style="background:var(--brass)"></span> HHI 1.500–2.500 — moderada</span>
+      <span><span class="dot" style="background:var(--brick)"></span> HHI &gt; 2.500 — alta concentración</span>
+    </div>
+  </section>
+
+  <section id="proveedores">
+    <div class="section-head"><span class="section-num">03</span><h3 class="section-title" id="provTitle">Los 12 proveedores de mayor adjudicación</h3></div>
+    <p class="section-desc">146 de los 616 proveedores (24%) tuvieron una única orden en todo el año — el mismo recorte de proveedores marginales que aísla el informe ARS para simplificar la red. Acá, en cambio, el foco es la punta superior de la distribución.</p>
+    <table class="prov">
+      <thead><tr><th>#</th><th>Proveedor</th><th style="text-align:right">Monto real</th><th>Órdenes</th><th></th></tr></thead>
+      <tbody id="provBody"></tbody>
+    </table>
+    <div class="empty-note" id="provEmpty" style="display:none;">No hay proveedores para esta selección.</div>
+  </section>
+
+  <section id="red">
+    <div class="section-head"><span class="section-num">04</span><h3 class="section-title">La red proveedor ↔ secretaría</h3></div>
+    <p class="section-desc">Reconstrucción de la red bimodal proveedor–secretaría (top 60 proveedores por monto real, siguiendo el recorte metodológico del informe original de ARS 2019). Layout radial: las secretarías se ubican en el anillo exterior: cada proveedor se posiciona cerca de su secretaría dominante, y más cerca del centro cuanto más secretarías distintas le compraron. Nombres reemplazados por códigos.</p>
+    <figure class="network-fig">
+      <img src="../assets/red_compras_2019.png" alt="Red de compras municipales 2019, anonimizada: proveedores identificados por código y secretarías por letra">
+      <figcaption>Fuente: elaboración propia sobre el registro de compras 2019, deduplicado por orden real y anonimizado (secretarías y proveedores reemplazados por códigos). Layout radial agrupado por secretaría dominante.</figcaption>
+    </figure>
+  </section>
+
+  <section id="metodologia">
+    <div class="section-head"><span class="section-num">05</span><h3 class="section-title">Nota sobre calidad de datos</h3></div>
+    <div class="method">
+      <h4>Lo que se corrigió</h4>
+      <ul>
+        <li><span class="flag">Importe duplicado por línea de detalle:</span> cada orden de compra aparece repetida en tantas filas como ítems de descripción tiene, con el mismo importe total en cada una. Sumar la columna IMPORTE sin deduplicar infla el gasto real en 2,4×.</li>
+        <li><span class="flag">Folio de orden incompleto (70,6% de las filas):</span> el número de OC solo está cargado en la primera línea de cada orden; se reconstruyó con relleno hacia adelante (forward-fill) para poder agrupar las líneas de una misma compra.</li>
+        <li>29 filas exactamente duplicadas, sin impacto material en los totales.</li>
+        <li>Sin valores nulos en fecha, importe o proveedor — la base es consistente en sus campos obligatorios.</li>
+      </ul>
+      <h4 style="margin-top:18px;">Lo que queda abierto</h4>
+      <ul>
+        <li>La deduplicación por (orden, proveedor, importe) asume que dos compras distintas de un mismo proveedor el mismo día no coinciden casualmente en el mismo importe exacto; en una base de este tamaño es una simplificación razonable pero no infalible, y ameritaría cotejarse contra el sistema de origen.</li>
+        <li>No hay forma, con este export, de saber por qué dejó de cargarse el folio de orden desde fines de abril — es la pregunta más valiosa para llevarle al área que genera el reporte.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>Fuente: registro de órdenes de compra 2019 de un municipio bonaerense (anonimizado)</span>
+    <span>Elaborado por la Dirección de Modernización · Cifras en pesos argentinos corrientes 2019</span>
+  </footer>
+
+</div>
+
+<script src="fine_data.js"></script>
+<script>
+// ---------- helpers ----------
+function fmtMoney(n){ return "$" + Math.round(n).toLocaleString('es-AR'); }
+function fmtMoneyShort(n){ return "$" + (n/1e6).toLocaleString('es-AR',{maximumFractionDigits:1}) + "M"; }
+function fmtInt(n){ return n.toLocaleString('es-AR'); }
+
+const T = FINE.totals;
+const monthNames = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+let selectedJurIdx = null; // null = todas
+
+// ---------- static header numbers (global, unaffected by filter) ----------
+document.getElementById('rawSum').textContent = fmtMoney(T.raw_sum_inflado);
+document.getElementById('realSum').textContent = fmtMoney(T.total_real);
+document.getElementById('ocAlert').textContent = `⚠ ${T.pct_sin_oc}% de las líneas no tienen N° de orden cargado`;
+
+// ---------- populate select ----------
+const sel = document.getElementById('jurSelect');
+const optAll = document.createElement('option');
+optAll.value = ""; optAll.textContent = "— Todas las secretarías —";
+sel.appendChild(optAll);
+FINE.jurNames.forEach((j,i)=>{
+  const o = document.createElement('option'); o.value = i; o.textContent = j; sel.appendChild(o);
+});
+sel.addEventListener('change', ()=>{ setFilter(sel.value === "" ? null : parseInt(sel.value)); });
+document.getElementById('resetChip').addEventListener('click', ()=>{ setFilter(null); });
+
+function setFilter(jurIdx){
+  selectedJurIdx = jurIdx;
+  sel.value = jurIdx === null ? "" : String(jurIdx);
+  document.getElementById('resetChip').classList.toggle('active', jurIdx === null);
+  render();
+}
+
+// ---------- aggregation from FINE.rows: [jurIdx, mes, proveedor, importe, n] ----------
+function filteredRows(){
+  if (selectedJurIdx === null) return FINE.rows;
+  return FINE.rows.filter(r => r[0] === selectedJurIdx);
+}
+
+function computeAll(){
+  const rows = filteredRows();
+  const monthly = new Array(12).fill(0);
+  const byJur = {}; // jurIdx -> {sum, n, provSet}
+  const byProv = {}; // proveedor -> {sum, n}
+  let totalSum = 0, totalN = 0;
+  const provSetGlobal = new Set();
+
+  rows.forEach(r=>{
+    const [jurIdx, mes, prov, importe, n] = r;
+    monthly[mes-1] += importe;
+    totalSum += importe; totalN += n;
+    provSetGlobal.add(prov);
+    if(!byJur[jurIdx]) byJur[jurIdx] = {sum:0, n:0, provs:{}};
+    byJur[jurIdx].sum += importe; byJur[jurIdx].n += n;
+    byJur[jurIdx].provs[prov] = (byJur[jurIdx].provs[prov]||0) + importe;
+
+    if(!byProv[prov]) byProv[prov] = {sum:0, n:0};
+    byProv[prov].sum += importe; byProv[prov].n += n;
+  });
+
+  // HHI per jur (share^2 sum *10000)
+  Object.keys(byJur).forEach(k=>{
+    const provs = byJur[k].provs;
+    const s = Object.values(provs).reduce((a,b)=>a+b,0);
+    let hhi = 0;
+    Object.values(provs).forEach(v=>{ const share = v/s; hhi += share*share; });
+    byJur[k].hhi = Math.round(hhi*10000*10)/10;
+  });
+
+  const topProv = Object.entries(byProv).sort((a,b)=>b[1].sum-a[1].sum).slice(0,12);
+  const top10Sum = Object.entries(byProv).sort((a,b)=>b[1].sum-a[1].sum).slice(0,10).reduce((a,[,v])=>a+v.sum,0);
+  const top10Share = totalSum>0 ? Math.round(1000*top10Sum/totalSum)/10 : 0;
+
+  return { monthly, byJur, byProv, topProv, totalSum, totalN, nProv: provSetGlobal.size, top10Share };
+}
+
+// ---------- render ----------
+function render(){
+  const A = computeAll();
+  const jurName = selectedJurIdx===null ? null : FINE.jurNames[selectedJurIdx];
+
+  // KPIs
+  document.getElementById('kpiGasto').textContent = fmtMoneyShort(A.totalSum).replace('$','$');
+  document.getElementById('kpiGastoL').textContent = jurName ? `Gasto real · ${jurName}` : 'Gasto real 2019';
+  document.getElementById('kpiOrdenes').textContent = fmtInt(A.totalN);
+  document.getElementById('kpiProv').textContent = fmtInt(A.nProv);
+  document.getElementById('kpiTop10').textContent = A.top10Share + '%';
+  document.getElementById('kpiTop10L').textContent = jurName ? `Concentran los 10 mayores en ${jurName}` : 'Concentran los 10 mayores';
+
+  // monthly chart
+  const chartEl = document.getElementById('chartMonthly');
+  chartEl.innerHTML = '';
+  const max = Math.max(...A.monthly, 1);
+  A.monthly.forEach((v,i)=>{
+    const col = document.createElement('div'); col.className='bar-col';
+    const h = Math.max(2, (v/max)*100);
+    col.innerHTML = `<div class="mval">${fmtMoneyShort(v)}</div><div class="bar" style="height:${h}%"></div><div class="mlabel">${monthNames[i]}</div>`;
+    chartEl.appendChild(col);
+  });
+  document.getElementById('mensualDesc').textContent = jurName
+    ? `Distribución mensual del gasto real dentro de ${jurName}.`
+    : 'Fuerte concentración en el primer tercio del año (enero–abril concentra cerca del 60% del gasto anual reconstruido), seguido de una meseta baja y estable de mayo a diciembre.';
+
+  // jur ranking (always full 10, dim/highlight based on selection)
+  const jurEl = document.getElementById('jurList');
+  jurEl.innerHTML = '';
+  // build full totals per jur across ALL rows (not filtered) for the ranking section
+  const fullByJur = {};
+  FINE.rows.forEach(r=>{
+    const [jurIdx,,,importe] = r;
+    if(!fullByJur[jurIdx]) fullByJur[jurIdx] = {sum:0, provs:{}};
+    fullByJur[jurIdx].sum += importe;
+  });
+  const fullMax = Math.max(...Object.values(fullByJur).map(d=>d.sum));
+  const order = Object.keys(fullByJur).map(Number).sort((a,b)=>fullByJur[b].sum-fullByJur[a].sum);
+  order.forEach(idx=>{
+    const d = fullByJur[idx];
+    const hhi = A.byJur[idx] ? A.byJur[idx].hhi : null;
+    const globalHhi = computeHhiForJur(idx);
+    const useHhi = globalHhi;
+    let hhiClass='hhi-low'; if(useHhi>=2500){hhiClass='hhi-high';} else if(useHhi>=1500){hhiClass='hhi-mid';}
+    const pct = (d.sum/fullMax)*100;
+    const row = document.createElement('div');
+    row.className = 'jur-row' + (selectedJurIdx!==null ? (selectedJurIdx===idx ? ' sel' : ' dim') : '');
+    row.innerHTML = `
+      <div class="jur-name">${FINE.jurNames[idx]}</div>
+      <div class="jur-bar-track"><div class="jur-bar-fill" style="width:${pct}%"></div></div>
+      <div class="jur-amount">${fmtMoney(d.sum)}</div>
+      <div class="jur-hhi"><span class="hhi-tag ${hhiClass}">HHI ${useHhi}</span></div>
+    `;
+    row.addEventListener('click', ()=> setFilter(selectedJurIdx===idx ? null : idx));
+    jurEl.appendChild(row);
+  });
+
+  // top providers table
+  const provTitle = document.getElementById('provTitle');
+  provTitle.textContent = jurName ? `Proveedores en ${jurName}` : 'Los 12 proveedores de mayor adjudicación';
+  const body = document.getElementById('provBody');
+  body.innerHTML = '';
+  const provEmpty = document.getElementById('provEmpty');
+  if(A.topProv.length===0){ provEmpty.style.display='block'; }
+  else {
+    provEmpty.style.display='none';
+    const pmax = A.topProv[0][1].sum;
+    A.topProv.forEach(([name,d],i)=>{
+      const pct = (d.sum/pmax)*100;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td class="rank">${String(i+1).padStart(2,'0')}</td>
+        <td class="pname">${name}</td>
+        <td class="pnum">${fmtMoney(d.sum)}</td>
+        <td class="pnum">${d.n}</td>
+        <td class="pbar"><div class="mini-bar-track"><div class="mini-bar-fill" style="width:${pct}%"></div></div></td>
+      `;
+      body.appendChild(tr);
+    });
+  }
+}
+
+function computeHhiForJur(jurIdx){
+  const provs = {};
+  FINE.rows.filter(r=>r[0]===jurIdx).forEach(r=>{ provs[r[2]] = (provs[r[2]]||0) + r[3]; });
+  const s = Object.values(provs).reduce((a,b)=>a+b,0);
+  let hhi = 0;
+  Object.values(provs).forEach(v=>{ const share=v/s; hhi += share*share; });
+  return Math.round(hhi*10000*10)/10;
+}
+
+render();
+</script>
+</body>
+</html>
