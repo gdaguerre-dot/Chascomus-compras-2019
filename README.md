@@ -99,18 +99,6 @@ cd docs && python -m http.server 8000
 
 Sin el archivo fuente, los pasos 3 y 4 igual funcionan a partir de `data/compras_2019_anonimizado.csv`, que sí está en el repo.
 
-## Cómo subir esto a GitHub (sin usar la terminal)
-
-Ya creaste el repo en https://github.com/gdaguerre-dot/chascomus-compras-2019 — para subir el contenido:
-
-1. Entrá al repo y hacé clic en **Add file → Upload files**.
-2. Abrí la carpeta descomprimida en tu computadora y **arrastrá las 4 carpetas** (`assets`, `data`, `docs`, `scripts`) más `README.md`, `linkedin_post.md` y `.gitignore` directamente a la ventana del navegador. Los navegadores modernos (Chrome, Edge, Firefox) preservan la estructura de carpetas al arrastrar.
-   - Si el navegador no reconoce las carpetas al arrastrarlas, subilas una por una entrando a "Upload files" dentro de cada carpeta destino (por ejemplo, creá primero `docs/index.html`, GitHub te crea la carpeta `docs` sola).
-3. Abajo de todo, en "Commit changes", dejá el mensaje por defecto o escribí algo como *"Subida inicial del dashboard anonimizado"* y hacé clic en **Commit changes**.
-4. Una vez subido todo, andá a **Settings → Pages**, en "Branch" elegí `main` y en la carpeta elegí **`/docs`**, guardá. GitHub publica el sitio en `https://gdaguerre-dot.github.io/chascomus-compras-2019/` en 1–2 minutos.
-
-No hace falta que instales git ni uses la terminal para nada de esto — todo se hace desde la web de GitHub.
-
 ## Limitaciones y lo que queda abierto
 
 - La deduplicación por (orden, proveedor, importe) es una reconstrucción razonable pero no perfecta: si dos compras distintas de un mismo proveedor el mismo día coincidieran en el importe exacto, se contarían como una sola.
