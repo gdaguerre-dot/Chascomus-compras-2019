@@ -12,7 +12,7 @@
 
 ## Por qué este proyecto
 
-Trabajé con esta base como parte de mi paso por la Dirección de Modernización de un municipio bonaerense. Tomé el mismo registro que había sustentado un informe previo de análisis de redes sociales (ARS) sobre las compras municipales de 2019, y le apliqué un proceso de auditoría de calidad de datos, reconstrucción de series reales, un tablero de transparencia con filtros interactivos, y una reconstrucción anonimizada del grafo de red — como ejercicio de portfolio para mostrar el circuito completo: **de un archivo de gestión municipal crudo a un producto de datos usable, sin exponer información identificable.**
+Trabajé con esta base como parte de mi paso por la Dirección de Modernización. Tomé el mismo registro que había sustentado un informe previo de análisis de redes sociales (ARS) sobre las compras municipales de 2019, y le apliqué un proceso de auditoría de calidad de datos, reconstrucción de series reales, un tablero de transparencia con filtros interactivos, y una reconstrucción anonimizada del grafo de red — como ejercicio de portfolio para mostrar el circuito completo: **de un archivo de gestión municipal crudo a un producto de datos usable, sin exponer información identificable.**
 
 ## El hallazgo principal
 
