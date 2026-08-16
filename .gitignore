@@ -2,3 +2,8 @@ __pycache__/
 *.pyc
 .DS_Store
 .ipynb_checkpoints/
+
+# Nunca subir el archivo fuente con nombres reales, ni los mapeos de anonimización
+data/orden_compra_2019_original.xlsx
+_mapping_*_PRIVADO.csv
+*_PRIVADO.*
