@@ -35,7 +35,6 @@ Ver la metodología completa en [`docs/index.html`](docs/index.html) (sección "
 | Nombre/razón social de proveedor | Reemplazado por código `PROV-001`…`PROV-616`, ordenados por gasto real descendente |
 | Número de folio de orden real | Reemplazado por un ID sintético secuencial (`OC-00001`…), sin relación con el folio original |
 | Dependencia de detalle (nivel más fino que secretaría) | Descartada de los archivos públicos — no se usa en el dashboard ni en la red |
-| Nombre del municipio | No se publica; se referencia como "municipio bonaerense" |
 
 El mapeo real → código se generó una sola vez y se usó de forma consistente en todos los archivos (CSV, dashboard y red), pero **no se publica** — queda excluido del repositorio (ver `.gitignore`). Esto es intencional: el objetivo es mostrar el proceso y la estructura, no permitir revincular los códigos con proveedores reales.
 
