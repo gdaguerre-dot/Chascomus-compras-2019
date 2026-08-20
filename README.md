@@ -4,7 +4,7 @@
 
 > 🔒 **Nota de privacidad:** este repositorio es un ejercicio a partir de trabajo real. Los nombres de proveedores y de secretarías fueron reemplazados por códigos (`PROV-XXX` / `Secretaría A`–`J`). Las proporciones, montos, fechas y estructura de la red son reales — solo se anonimizaron las identidades.
 
-🔗 **[Ver el dashboard interactivo](https://gdaguerre-dot.github.io/chascomus-Compras-2019/)**
+🔗 **[Ver el dashboard interactivo](https://gdaguerre-dot.github.io/Chascomus-compras-2019/)**
 
 ![Red de compras municipales 2019, anonimizada](assets/red_compras_2019.png)
 
