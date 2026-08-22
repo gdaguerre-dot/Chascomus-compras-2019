@@ -65,6 +65,14 @@ El mapeo real → código se generó una sola vez y se usó de forma consistente
 - **Ranking de proveedores** por código, por monto real adjudicado.
 - **Red proveedor–secretaría** anonimizada, como puente con el informe ARS original.
 
+### Índice de concentración (HHI)
+
+HHI = ∑(share de gasto del proveedor)² × 10.000, calculado por secretaría,
+sobre el gasto real reconstruido del año 2019 completo (no filtrado por mes).
+
+Umbrales: <1.500 baja concentración, 1.500–2.500 moderada, >2.500 alta
+(convención estándar, ej. DOJ/FTC).
+
 ## La red proveedor–secretaría
 
 `assets/red_compras_2019.png` reconstruye la red bimodal del informe original con un layout radial: las 10 secretarías (por letra) se ubican en el anillo exterior; los 60 proveedores de mayor adjudicación real (por código) se agrupan cerca de su secretaría dominante, y se acercan al centro cuanto más secretarías distintas les compraron. El tamaño del nodo es proporcional al monto; el color, a la secretaría dominante del proveedor.
