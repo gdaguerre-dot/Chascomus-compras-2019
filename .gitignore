@@ -4,6 +4,6 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Nunca subir el archivo fuente con nombres reales, ni los mapeos de anonimización
-data/orden_compra_2019_original.xlsx
+data/orden_compra_2019.xls
 _mapping_*_PRIVADO.csv
 *_PRIVADO.*
