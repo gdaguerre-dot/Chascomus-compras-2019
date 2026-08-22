@@ -3,6 +3,9 @@ Anonimiza el registro de compras: reemplaza nombres de secretarías y
 proveedores por códigos estables, y descarta columnas identificatorias
 (número de folio real, dependencia de detalle).
 
+La reconstrucción de órdenes reales (forward-fill + deduplicación) vive en
+scripts/lib/reconstruct.py, compartida con clean_and_aggregate.py.
+
 NOTA: el archivo fuente (con nombres reales) NO se publica en este repositorio.
 Este script documenta el método; para correrlo hace falta el export original,
 que se mantiene fuera de control de versiones por privacidad.
@@ -11,18 +14,22 @@ Uso:
     python scripts/anonymize.py data/orden_compra_2019_original.xlsx
 """
 
+import os
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 import json
 import string
 import pandas as pd
+from lib.reconstruct import reconstruct_real_orders
 
 
 def main():
     path = sys.argv[1] if len(sys.argv) > 1 else "data/orden_compra_2019_original.xlsx"
 
     df = pd.read_excel(path, sheet_name="orden_compra")
-    df["OC_FILL"] = df["ORDENCOMPRA"].ffill()
-    real = df.drop_duplicates(subset=["OC_FILL", "IMPORTE", "PROVEEDOR"]).copy()
+    real = reconstruct_real_orders(df)
     real["MES"] = real["FECHA"].dt.month
 
     # Secretaría -> letra, ordenado por gasto real descendente (A = mayor gasto)

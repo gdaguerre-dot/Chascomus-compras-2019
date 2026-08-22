@@ -13,6 +13,9 @@ dos problemas de calidad de datos encontrados en el archivo original:
 2. El importe de la orden se repite idéntico en cada línea de detalle que la
    compone. Sumar la columna IMPORTE sin deduplicar infla el gasto real en ~2,4x.
 
+La lógica de reconstrucción vive en scripts/lib/reconstruct.py, compartida
+con anonymize.py, para que ambos scripts nunca puedan divergir.
+
 NOTA: el archivo fuente (con nombres reales) NO se publica en este repositorio,
 por privacidad. Este script documenta el método de limpieza; para reproducir
 los datos publicados hace falta correr esto y luego scripts/anonymize.py
@@ -22,19 +25,17 @@ Uso:
     python scripts/clean_and_aggregate.py data/orden_compra_2019_original.xlsx
 """
 
+import os
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 import pandas as pd
+from lib.reconstruct import reconstruct_real_orders
 
 
 def load_raw(path: str) -> pd.DataFrame:
     return pd.read_excel(path, sheet_name="orden_compra")
-
-
-def reconstruct_real_orders(df: pd.DataFrame) -> pd.DataFrame:
-    """Reconstruye una fila por orden de compra real."""
-    df = df.copy()
-    df["OC_FILL"] = df["ORDENCOMPRA"].ffill()
-    return df.drop_duplicates(subset=["OC_FILL", "IMPORTE", "PROVEEDOR"]).copy()
 
 
 def data_quality_report(df: pd.DataFrame, real: pd.DataFrame) -> dict:
