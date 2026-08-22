@@ -2,7 +2,7 @@
 
 **Auditoría de calidad de datos, análisis de compras públicas sobre el registro de órdenes de compra 2019.**
 
-> 🔒 **Nota de privacidad:** este repositorio es un ejercicio a partir de trabajo real. Los nombres de proveedores y de secretarías fueron reemplazados por códigos (`PROV-XXX` / `Secretaría A`–`J`). Las proporciones, montos, fechas y estructura de la red son reales — solo se anonimizaron las identidades.
+> 🔒 **Nota de privacidad:** este repositorio es un ejercicio a partir de trabajo realizado. Los nombres de proveedores y de secretarías fueron reemplazados por códigos (`PROV-XXX` / `Secretaría A`–`J`). Las proporciones, montos, fechas y estructura de la red son reales — solo se anonimizaron las identidades.
 
 🔗 **[Ver el dashboard interactivo](https://gdaguerre-dot.github.io/Chascomus-compras-2019/)**
 
