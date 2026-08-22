@@ -74,7 +74,7 @@ Umbrales: <1.500 baja concentración, 1.500–2.500 moderada, >2.500 alta
 
 ## La red proveedor–secretaría
 
-`assets/red_compras_2019.png` reconstruye la red bimodal del informe original con un layout radial: las 10 secretarías (por letra) se ubican en el anillo exterior; los 60 proveedores de mayor adjudicación real (por código) se agrupan cerca de su secretaría dominante, y se acercan al centro cuanto más secretarías distintas les compraron. El tamaño del nodo es proporcional al monto; el color, a la secretaría dominante del proveedor.
+`assets/red_compras_2019.png` reconstruye la red bimodal del informe original con un layout radial: las 10 secretarías se ubican en el anillo exterior; los 60 proveedores de mayor adjudicación real (por código) se agrupan cerca de su secretaría dominante, y se acercan al centro cuanto más secretarías distintas les compraron. El tamaño del nodo es proporcional al monto; el color, a la secretaría dominante del proveedor.
 
 Se regenera con:
 
@@ -90,10 +90,10 @@ Requiere el archivo fuente original (no publicado, por privacidad):
 pip install pandas openpyxl matplotlib numpy
 
 # 1) Diagnóstico de calidad de datos (opcional, solo imprime el reporte)
-python scripts/clean_and_aggregate.py data/orden_compra_2019_original.xlsx
+python scripts/clean_and_aggregate.py data/orden_compra_2019.xls
 
 # 2) Limpieza + anonimización + agregación (genera data/compras_2019_anonimizado.csv y docs/fine_data.js)
-python scripts/anonymize.py data/orden_compra_2019_original.xlsx
+python scripts/anonymize.py data/orden_compra_2019.xls
 
 # 3) Grafo de red (genera assets/red_compras_2019.png)
 python scripts/build_network_graph.py data/compras_2019_anonimizado.csv
@@ -110,7 +110,7 @@ Sin el archivo fuente, los pasos 3 y 4 igual funcionan a partir de `data/compras
 - La deduplicación por (orden, proveedor, importe) es una reconstrucción razonable pero no perfecta: si dos compras distintas de un mismo proveedor el mismo día coincidieran en el importe exacto, se contarían como una sola.
 - No hay forma, con este export, de saber *por qué* dejó de cargarse el folio de orden desde fines de abril de 2019.
 - Las cifras están en pesos argentinos corrientes de 2019 (sin ajuste por inflación).
-- Los códigos de proveedor y secretaría son estables *dentro de este repositorio* pero no tienen ningún significado fuera de él.
+- Los códigos de proveedor son estables *dentro de este repositorio* pero no tienen ningún significado fuera de él.
 
 ## Contexto
 
