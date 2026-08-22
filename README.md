@@ -59,7 +59,7 @@ El mapeo real → código se generó una sola vez y se usó de forma consistente
 ## El dashboard
 
 - **KPIs y monto real vs. inflado**, con la corrección de datos como pieza central, no como nota al pie.
-- **Filtro interactivo por secretaría** (por letra): al hacer clic en cualquier fila de la sección "Gasto por secretaría", todo el tablero (KPIs, gasto mensual, ranking de proveedores) se recalcula, calculado en el navegador a partir del set agregado — sin backend ni datos reales expuestos.
+- **Filtro interactivo por secretaría**: al hacer clic en cualquier fila de la sección "Gasto por secretaría", todo el tablero (KPIs, gasto mensual, ranking de proveedores) se recalcula, calculado en el navegador a partir del set agregado — sin backend ni datos reales expuestos.
 - **Índice de concentración de proveedores (HHI)** por secretaría, con semáforo bajo / moderado / alto.
 - **Ranking de proveedores** por código, por monto real adjudicado.
 - **Red proveedor–secretaría** anonimizada, como puente con el informe ARS original.
